@@ -42,7 +42,7 @@
 * [密鑰的轉換](#密鑰的轉換)
 * [明文與密鑰的第一階段編碼](#明文與密鑰的第一階段編碼)
 * [明文與密鑰的第二階段編碼](#明文與密鑰的第二階段編碼)
-* [密文保存在雲端資料庫的編碼](#密文保存在雲端資料庫的編碼)
+* [密文替身編碼](#密文替身編碼)
 * [計算解密難度及推測暴力解密方式](#計算解密難度及推測暴力解密方式)
 * [引用程式庫](#引用程式庫)
 
@@ -288,10 +288,67 @@ function encryptB( numOperator, txtCode, keyCode ) {
 
 
 
-## 密文保存在雲端資料庫的編碼
+## 密文替身編碼
 
 
-**待續編寫， 目前想法是使用轉換碼。**
+* 以替代方式再次混淆密文。
+
+
+替代密鑰取得演示：
+
+```js
+var item;
+var random = md5( Math.random() );
+var count16 = '0123456789abcdef';
+var len = 15;
+var key = '';
+
+while ( len-- ) {
+    item = count16[ parseInt( random[ len ], 16 ) % count16.length ];
+    key += item;
+    count16 = count16.split( item ).join( '' );
+}
+
+key += count16;
+
+return key;
+```
+
+
+編碼演示：
+
+```js
+var txtCode = 'c05022b75b779a2109ce'; // 密文編碼
+var key = 'e72a0649f15bc38d'; // 替代密鑰
+
+substitute(  1, 'c05022b75b779a2109ce', key ); // "c4a422b1ab11732947c0"
+substitute( -1, 'c4a422b1ab11732947c0', key ); // "c05022b75b779a2109ce"
+
+
+function substitute( numOperator, txtCode, strKey ) {
+    var tem;
+    var p, len, val, idx;
+    var txt = '';
+
+    if ( numOperator === -1 ) {
+        tem = [];
+        len = 16;
+
+        while ( len-- ) tem[ parseInt( strKey[ len ], 16 ) ] = len.toString( 16 );
+        strKey = tem.join( '' );
+    }
+
+    for ( p = 0, len = txtCode.length; p < len ; p++ ) {
+        val = txtCode[ p ];
+        idx = strKey.indexOf( val );
+
+        if ( ~idx ) txt += idx.toString( 16 );
+        else txt += val;
+    }
+
+    return txt;
+}
+```
 
 
 
