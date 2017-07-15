@@ -25,110 +25,266 @@ body {
     background-repeat: no-repeat;
     background-color: #444;
     overflow: hidden;
+    transition: background-position 1s;
 }
 
-@media (max-width: 320px) {
+@media (max-height: 360px) and (max-aspect-ratio: 11/5) {
     body {
-        width: 320px;
-        overflow-x: visible;
+        background-size: auto 468px;
+    }
+}
+
+@media (min-height: 360px) and (min-aspect-ratio: 11/5) {
+    body {
+        background-size: 100% 130%;
+    }
+}
+
+@media (max-height: 360px) and (min-aspect-ratio: 11/5) {
+    body {
+        background-size: 100% 468px;
     }
 }
 
 .topLayer {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: center;
-    font-size: 20px;
-    color: #808040;
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14);
-    box-shadow: 0 2px 9px 1px rgba(0, 0, 0, 0.12);
-    z-index: 890;
-}
-
-.topLayer > h1 {
     padding: 2rem 2.5rem;
-    flex: 1;
+    top: 0;
     font-size: 3rem;
     color: #D8D8D8;
-}
-
-.menuBtn {
-    margin: 0;
-    width: 7rem;
-    height: 7rem;
-    display: block;
-    font-size: 3rem;
-    font-weight: 900;
-    font-weight: 300;
-    font-size: 3.2em;
-    color: #2d383f;
-    cursor: default;
-    transition: all 0.5s;
-}
-
-.menuBtn::after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    display: block;
-    box-sizing: border-box;
-    box-shadow: inset 0 1rem 0 -0.2rem #2d383f,
-                inset 0 1.5rem #fff,
-                inset 0 2.5rem 0 -0.2rem #2d383f,
-                inset 0 3rem #fff,
-                inset 0 4rem 0 -0.2rem #2d383f;
-    border: 1.6rem solid #fff;
-    cursor: pointer;
-    transition: opacity 0.5s;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 890;
+    transition: top 1s;
 }
 
 #main {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    margin: 2rem 1rem;
+    width 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
 }
 
+@media (max-height: 228px) {
+    body {
+        background-position: 50% 60%;
+    }
+}
+
+@media (max-width: 228px), (max-height: 228px) {
+    .topLayer {
+        position: relative;
+        top: -8rem;
+    }
+
+    #main {
+        display: none;
+    }
+}
+
+
 .toolBox {
-    margin: 0 auto;
-    max-width: 40rem;
+    width: 40rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: stretch;
     align-content: center;
-    font-size: 20px;
+    font-size: 3rem;
+    font-weight: 900;
 }
 
-        .toolBox_square {
-            margin: 1.5%;
-            width: 30.33%;
-            height: 0;
-            padding-top: 30.33%;
-            position: relative;
-            background: rgba(0,0,0,0.1);
-        }
+    body.onMobile #toolBox_squareMenu,
+    .toolBoxStyle {
+        background: rgba(51,51,51,0.3);
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                    0 2px 9px 1px rgba(0, 0, 0, 0.12),
+                    0 4px 2px -2px rgba(0, 0, 0, 0.2);
+    }
 
-        .toolBox_wide {
-            margin: 1.5%;
-            width: 63.66%;
-            height: 0;
-            padding-top: 30.33%;
-            position: relative;
-            background: rgba(0,0,0,0.1);
-        }
+    body.onPc #toolBox_squareMenu,
+    .toolBox_square.onEmpty {
+        background: rgba(98, 91, 87, 0.3);
+        box-shadow: initial;
+    }
 
-        .toolBox_square > h1,
-        .toolBox_wide > h1 {
+    .toolBox_square,
+    .toolBox_wide {
+        margin: 1.5%;
+        height: 0;
+        padding-top: 30.33%;
+        position: relative;
+    }
+
+    .toolBox_square {
+        width: 30.33%;
+    }
+
+    .toolBox_wide {
+        width: 63.66%;
+    }
+
+    .toolBox_boxIcon {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+    }
+
+        .toolBox_boxIcon > h1 {
+            width: 100%;
+            height: 100%;
             position: absolute;
             top: 0;
+            left: 100%;
+            text-align: center;
+            transition: left 0.5s;
         }
 
-        .toolBox_square.onEmpty {
-            background: rgba(98, 91, 87, 0.3);
+        .toolBox_boxIcon > h1::before {
+            content: '';
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
         }
+
+        body.onMobile #toolBox_squareMenu::after,
+        .toolBox_boxIcon::after {
+            content: "";
+            margin: 10%;
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            top: 0;
+            left: 0%;
+            display: block;
+            background-image: url("collect_icon.svg");
+            background-repeat: no-repeat;
+            background-size: 600% 100%;
+            background-position: 20% 0;
+            transition: left 0.5s;
+        }
+
+        .toolBox_wide > .toolBox_boxIcon::after {
+            margin: 5% 30%;
+            width: 40%;
+        }
+
+        .toolBox_square.onShowTitle > .toolBox_boxIcon > h1,
+        .toolBox_wide.onShowTitle > .toolBox_boxIcon > h1 {
+            left: 0%;
+        }
+
+        .toolBox_square.onShowTitle > .toolBox_boxIcon::after,
+        .toolBox_wide.onShowTitle > .toolBox_boxIcon::after {
+            left: -100%;
+        }
+
+    #toolBox_sourceCode > .toolBox_boxIcon > h1 {
+        background: rgb(255, 153, 0);
+        color: rgb(0, 102, 255);
+    }
+
+    #toolBox_sourceCode > .toolBox_boxIcon::after {
+        background-size: 600% 100%;
+        background-position: 40% 0;
+    }
+
+    #toolBox_read > .toolBox_boxIcon > h1 {
+        background: rgb(244, 0, 161);
+        color: rgb(11, 255, 94);
+    }
+
+    #toolBox_read > .toolBox_boxIcon::after {
+        background-size: 600% 100%;
+        background-position: 60% 0;
+    }
+
+    #toolBox_write > .toolBox_boxIcon > h1 {
+        background: rgb(153, 255, 77);
+        color: rgb(102, 0, 178);
+    }
+
+    #toolBox_write > .toolBox_boxIcon::after {
+        background-size: 600% 100%;
+        background-position: 80% 0;
+    }
+
+    #toolBox_history > .toolBox_boxIcon > h1 {
+        background: rgb(0, 127, 255);
+        color: rgb(255, 128, 0);
+    }
+
+    #toolBox_history > .toolBox_boxIcon::after {
+        background-size: 600% 100%;
+        background-position: 100% 0;
+    }
+
+    #toolBox_reportProblem > .toolBox_boxIcon > h1 {
+        background: rgb(255, 200, 50);
+        color: rgb(0, 55, 205);
+    }
+
+    #toolBox_reportProblem > .toolBox_boxIcon::after {
+        background-size: 600% 100%;
+        background-position: 20% 0;
+    }
+
+    #toolBox_squareMenu {
+        transition: background 0.4s;
+    }
+
+    #toolBox_squareMenu.onShowTitle {
+        background: rgb(139, 0, 255) !important;
+    }
+
+    body.onMobile #toolBox_squareMenu::after {
+        background-position: 0 0;
+    }
+
+    @media (max-height: 380px) {
+        .toolBox_wide {
+            width: 30.33%;
+        }
+
+        .toolBox_square > .toolBox_boxIcon::after,
+        .toolBox_wide > .toolBox_boxIcon::after {
+            margin: 10%;
+            width: 80%;
+            left: 0% !important;
+        }
+
+        .toolBox_boxIcon > h1 {
+            left: 100% !important;
+        }
+
+        #toolBox_squareMenu {
+            display: none;
+        }
+    }
+
+    @media (min-width: 320px) and (max-height: 520px) {
+        #main {
+            margin: 2rem 1rem 6rem 1rem;
+            align-items: center;
+            position: absolute;
+            top: 7rem;
+            left: 0;
+            right: 0;
+            bottom: 0rem;
+        }
+
+        .toolBox_square.onEmpty,
+        #toolBox_sourceCode,
+        #toolBox_reportProblem {
+            display: none;
+        }
+    }
 
