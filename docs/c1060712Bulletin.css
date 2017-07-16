@@ -7,6 +7,24 @@ html {
     font-size: 8px;
 }
 
+@media (min-width: 288px) and (max-width: 330px) {
+    html {
+        font-size: 7px;
+    }
+}
+
+@media (min-width: 248px) and (max-width: 288px) {
+    html {
+        font-size: 6px;
+    }
+}
+
+@media (max-width: 248px) {
+    html {
+        font-size: 5px;
+    }
+}
+
 html, body {
     margin: 0;
     width: 100%;
@@ -63,11 +81,19 @@ body {
 
 #main {
     margin: 2rem 1rem;
-    width 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    position: absolute;
+    top: 7rem;
+    left: 0;
+    right: 0;
+    bottom: 0rem;
     text-align: center;
+}
+
+#main::before {
+    content: '';
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 @media (max-height: 228px) {
@@ -89,45 +115,35 @@ body {
 
 
 .toolBox {
-    width: 40rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: center;
+    width: 39rem;
+    display: inline-block;
     font-size: 3rem;
     font-weight: 900;
 }
 
+    .toolBox_square,
+    .toolBox_wide {
+        margin: 0.5rem;
+        height: 12rem;
+        position: relative;
+        float: left;
+        background: rgba(98, 91, 87, 0.3);
+    }
+
+    .toolBox_square {
+        width: 12rem;
+    }
+
+    .toolBox_wide {
+        width: 25rem;
+    }
+
     body.onMobile #toolBox_squareMenu,
-    .toolBoxStyle {
+    .toolBox_enabledBox {
         background: rgba(51,51,51,0.3);
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
                     0 2px 9px 1px rgba(0, 0, 0, 0.12),
                     0 4px 2px -2px rgba(0, 0, 0, 0.2);
-    }
-
-    body.onPc #toolBox_squareMenu,
-    .toolBox_square.onEmpty {
-        background: rgba(98, 91, 87, 0.3);
-        box-shadow: initial;
-    }
-
-    .toolBox_square,
-    .toolBox_wide {
-        margin: 1.5%;
-        height: 0;
-        padding-top: 30.33%;
-        position: relative;
-    }
-
-    .toolBox_square {
-        width: 30.33%;
-    }
-
-    .toolBox_wide {
-        width: 63.66%;
     }
 
     .toolBox_boxIcon {
@@ -177,15 +193,25 @@ body {
             width: 40%;
         }
 
-        .toolBox_square.onShowTitle > .toolBox_boxIcon > h1,
-        .toolBox_wide.onShowTitle > .toolBox_boxIcon > h1 {
+        .toolBox_enabledBox.onShowTitle > .toolBox_boxIcon > h1 {
             left: 0%;
         }
 
-        .toolBox_square.onShowTitle > .toolBox_boxIcon::after,
-        .toolBox_wide.onShowTitle > .toolBox_boxIcon::after {
+        .toolBox_enabledBox.onShowTitle > .toolBox_boxIcon::after {
             left: -100%;
         }
+
+    #toolBox_squareMenu {
+        transition: background 0.4s;
+    }
+
+    #toolBox_squareMenu.onShowTitle {
+        background: rgb(139, 0, 255) !important;
+    }
+
+    body.onMobile #toolBox_squareMenu::after {
+        background-position: 0 0;
+    }
 
     #toolBox_sourceCode > .toolBox_boxIcon > h1 {
         background: rgb(255, 153, 0);
@@ -237,25 +263,26 @@ body {
         background-position: 20% 0;
     }
 
-    #toolBox_squareMenu {
-        transition: background 0.4s;
+    @media (min-width: 288px) and (max-height: 520px) {
+        #main::before {
+            height: 125%;
+        }
+
+        body.onPc #toolBox_squareMenu,
+        body.onMobile #toolBox_sourceCode,
+        .toolBox_square.onEmpty,
+        #toolBox_reportProblem {
+            display: none;
+        }
     }
 
-    #toolBox_squareMenu.onShowTitle {
-        background: rgb(139, 0, 255) !important;
-    }
 
-    body.onMobile #toolBox_squareMenu::after {
-        background-position: 0 0;
-    }
-
-    @media (max-height: 380px) {
+    @media (min-width: 288px) and (max-height: 380px) {
         .toolBox_wide {
             width: 30.33%;
         }
 
-        .toolBox_square > .toolBox_boxIcon::after,
-        .toolBox_wide > .toolBox_boxIcon::after {
+        .toolBox_enabledBox > .toolBox_boxIcon::after {
             margin: 10%;
             width: 80%;
             left: 0% !important;
@@ -265,25 +292,42 @@ body {
             left: 100% !important;
         }
 
-        #toolBox_squareMenu {
+        #toolBox_squareMenu,
+        #toolBox_sourceCode {
             display: none;
         }
     }
 
-    @media (min-width: 320px) and (max-height: 520px) {
-        #main {
-            margin: 2rem 1rem 6rem 1rem;
-            align-items: center;
-            position: absolute;
-            top: 7rem;
-            left: 0;
-            right: 0;
-            bottom: 0rem;
+    @media (min-width: 228px) and (max-width: 288px) and (max-height: 394px) {
+        #main::before {
+            height: 128%;
         }
 
+        body.onPc #toolBox_squareMenu,
+        body.onMobile #toolBox_sourceCode,
         .toolBox_square.onEmpty,
-        #toolBox_sourceCode,
         #toolBox_reportProblem {
+            display: none;
+        }
+    }
+
+    @media (min-width: 228px) and (max-width: 288px) and (max-height: 254px) {
+        .toolBox_wide {
+            width: 30.33%;
+        }
+
+        .toolBox_enabledBox > .toolBox_boxIcon::after {
+            margin: 10%;
+            width: 80%;
+            left: 0% !important;
+        }
+
+        .toolBox_boxIcon > h1 {
+            left: 100% !important;
+        }
+
+        #toolBox_squareMenu,
+        #toolBox_sourceCode {
             display: none;
         }
     }

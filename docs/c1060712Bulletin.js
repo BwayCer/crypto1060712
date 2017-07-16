@@ -25,7 +25,7 @@
 
 
     if ( isPcMode ) {
-        document.querySelectorAll( '.toolBox > .toolBox_square, .toolBox > .toolBox_wide' )
+        document.querySelectorAll( '.toolBox_enabledBox' )
             .forEach( function ( helItem ) {
                 helItem.addEventListener( 'mouseenter', function () {
                     this.classList.add( 'onShowTitle' );
