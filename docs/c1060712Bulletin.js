@@ -40,11 +40,16 @@
             var drawId = null;
 
             document.getElementById( 'toolBox_squareMenu' )
-                .addEventListener( 'click', function () {
+                .addEventListener( 'click', function ( evt ) {
                     if ( drawId ) cancelAnimationFrame( drawId );
 
                     requestAnimationFrame( () => {
                         drawId = null;
+
+                        var helRipple = this.querySelector( '.ripple' );
+
+                        helRipple.style.top = evt.offsetY + 'px';
+                        helRipple.style.left = evt.offsetX + 'px';
 
                         var p, len;
                         var brothers = this.parentNode.children;
