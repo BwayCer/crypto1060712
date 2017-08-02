@@ -1,4 +1,12 @@
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('./font/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+         url('./font/fontawesome-webfont.woff?v=4.7.0') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,23 +15,25 @@ html {
     font-size: 8px;
 }
 
-@media (min-width: 288px) and (max-width: 330px) {
-    html {
-        font-size: 7px;
-    }
-}
+/* media */
 
-@media (min-width: 248px) and (max-width: 288px) {
-    html {
-        font-size: 6px;
+    @media (min-width: 308px) and (max-width: 348px) {
+        html {
+            font-size: 7px;
+        }
     }
-}
 
-@media (max-width: 248px) {
-    html {
-        font-size: 5px;
+    @media (min-width: 268px) and (max-width: 308px) {
+        html {
+            font-size: 6px;
+        }
     }
-}
+
+    @media (max-width: 268px) {
+        html {
+            font-size: 5px;
+        }
+    }
 
 html, body {
     margin: 0;
@@ -36,37 +46,32 @@ html, body {
     color: #000;
 }
 
-body {
-    background-image: url("./night_lights.jpg");
-    background-position: 50% 10%;
-    background-size: auto 130%;
-    background-repeat: no-repeat;
-    background-color: #444;
+
+#letter {
+    display: none;
+}
+
+#management {
+    height: 100%;
     overflow: hidden;
-    transition: background-position 1s;
 }
 
-@media (max-height: 360px) and (max-aspect-ratio: 11/5) {
-    body {
-        background-size: auto 468px;
+    #managementWrap {
+        height: 100%;
+        position: relative;
+        background-image: url("./night_lights.jpg");
+        background-position: 50% 10%;
+        background-size: auto 130%;
+        background-repeat: no-repeat;
+        background-color: #444;
+        transition: background-position 0.4s;
     }
-}
 
-@media (min-height: 360px) and (min-aspect-ratio: 11/5) {
-    body {
-        background-size: 100% 130%;
-    }
-}
 
-@media (max-height: 360px) and (min-aspect-ratio: 11/5) {
-    body {
-        background-size: 100% 468px;
-    }
-}
-
-.topLayer {
+.mainSign {
     width: 100%;
     padding: 2rem 2.5rem;
+    position: relative;
     top: 0;
     font-size: 3rem;
     color: #D8D8D8;
@@ -75,9 +80,9 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    z-index: 890;
-    transition: top 1s;
+    transition: top 0.4s;
 }
+
 
 #main {
     margin: 2rem 1rem;
@@ -85,133 +90,211 @@ body {
     top: 7rem;
     left: 0;
     right: 0;
-    bottom: 0rem;
+    bottom: 0;
     text-align: center;
+    overflow: hidden;
 }
 
-#main::before {
-    content: '';
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-@media (max-height: 228px) {
-    body {
-        background-position: 50% 60%;
-    }
-}
-
-@media (max-width: 228px), (max-height: 228px) {
-    .topLayer {
-        position: relative;
-        top: -8rem;
+    #main::before {
+        content: "";
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
     }
 
-    #main {
-        display: none;
+/* media */
+
+    /***
+     *   | 1rem |   39rem   | 1rem |
+     *  -|------|-----------|------|--
+     *   |      |           |      | 7rem
+     *  -|------|-----------|------|--
+     *   |      |           |      | 2rem
+     *  -|------|-----------|------|--
+     *   |                         |
+     *   |                         | 52rem
+     *   |                         |
+     *  -|-------------------------|--
+     *   |                         | 5rem
+     *  -|-------------------------|--
+     *
+     *  1:1 => w:  41px, h:  66px
+     *  1:5 => w: 205px, h: 330px
+     *  1:6 => w: 246px, h: 396px
+     *  1:7 => w: 287px, h: 462px
+     *  1:8 => w: 328px, h: 528px
+     */
+
+    @media (min-width: 328px) and (max-height: 528px) {
+        body.onMobile.onFocus html,
+        body.onMobile.onFocus body,
+        html, body {
+            height: 528px;
+        }
     }
-}
+
+    @media (min-width: 287px) and (max-width: 328px) and (max-height: 462px) {
+        body.onMobile.onFocus html,
+        body.onMobile.onFocus body,
+        html, body {
+            height: 462px;
+        }
+    }
+
+    @media (min-width: 246px) and (max-width: 287px) and (max-height: 396px) {
+        body.onMobile.onFocus html,
+        body.onMobile.onFocus body,
+        html, body {
+            height: 396px;
+        }
+    }
+
+    @media (min-width: 228px) and (max-width: 246px) and (max-height: 330px) {
+        html, body {
+            height: 330px;
+        }
+    }
+
+    @media (max-width: 228px), (max-height: 228px) {
+        body {
+            height: 100%;
+        }
+
+        .mainSign {
+            top: -8rem;
+        }
+
+        #main,
+        #toolBox {
+            display: none;
+        }
+    }
+
+    @media (max-height: 228px) {
+        body.onMobile.onFocus .mainSign {
+            top: 0;
+        }
+
+        body.onMobile.onFocus #main,
+        body.onMobile.onFocus #toolBox {
+            display: initial;
+        }
+    }
+
+/* media */
+
+    @media (min-aspect-ratio: 11/5) {
+        #managementWrap {
+            background-size: 100% 130%;
+        }
+    }
+
+    @media (max-height: 228px) {
+        #managementWrap {
+            background-position: 50% 60%;
+        }
+    }
 
 
-.toolBox {
+.optsBtn {
     width: 39rem;
     display: inline-block;
-    font-size: 3rem;
     font-weight: 900;
 }
 
-    .toolBox_square,
-    .toolBox_wide {
-        margin: 0.5rem;
-        height: 12rem;
-        position: relative;
-        float: left;
+    body.onPc #optsBtn_squareMenu,
+    .optsBtn_square.onEmpty {
         background: rgba(98, 91, 87, 0.3);
     }
 
-    .toolBox_square {
+    .optsBtn_square,
+    .optsBtn_wide {
+        margin: 0.5rem;
         width: 12rem;
+        height: 12rem;
+        position: relative;
+        float: left;
+        overflow: hidden;
     }
 
-    .toolBox_wide {
+    .optsBtn_wide {
         width: 25rem;
     }
 
-    body.onMobile #toolBox_squareMenu,
-    .toolBox_enabledBox {
-        background: rgba(51,51,51,0.3);
+    body.onMobile #optsBtn_squareMenu,
+    .optsBtn_enabledBox {
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
                     0 2px 9px 1px rgba(0, 0, 0, 0.12),
                     0 4px 2px -2px rgba(0, 0, 0, 0.2);
     }
 
-    .toolBox_boxIcon {
+/* optsBtn enabledBox */
+
+    .optsBtn_enabledBox > h1 {
         width: 100%;
         height: 100%;
         position: absolute;
         top: 0;
-        overflow: hidden;
+        left: 100%;
+        text-align: center;
+        font-size: 3rem;
+        transition: left 0.5s;
     }
 
-        .toolBox_boxIcon > h1 {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 100%;
-            text-align: center;
-            transition: left 0.5s;
-        }
-
-        .toolBox_boxIcon > h1::before {
-            content: '';
-            height: 100%;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        body.onMobile #toolBox_squareMenu::after,
-        .toolBox_boxIcon::after {
-            content: "";
-            margin: 10%;
-            width: 80%;
-            height: 80%;
-            position: absolute;
-            top: 0;
-            left: 0%;
-            display: block;
-            background-image: url("collect_icon.svg");
-            background-repeat: no-repeat;
-            background-size: 600% 100%;
-            background-position: 20% 0;
-            transition: left 0.5s;
-        }
-
-        .toolBox_wide > .toolBox_boxIcon::after {
-            margin: 5% 30%;
-            width: 40%;
-        }
-
-        .toolBox_enabledBox.onShowTitle > .toolBox_boxIcon > h1 {
-            left: 0%;
-        }
-
-        .toolBox_enabledBox.onShowTitle > .toolBox_boxIcon::after {
-            left: -100%;
-        }
-
-    #toolBox_squareMenu {
-        transition: background 0.4s 0.1s;
+    .optsBtn_enabledBox > h1::before {
+        content: "";
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
     }
 
-    #toolBox_squareMenu.onShowTitle {
+    body.onMobile #optsBtn_squareMenu::after,
+    .optsBtn_enabledBox::after {
+        width: 100%;
+        height: 100%;
+        padding: 10%;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        display: block;
+        background: rgba(51,51,51,0.3);
+        user-select: none;
+        font-family: 'FontAwesome';
+        line-height: 9.6rem;
+        color: #EEE;
+        box-sizing: border-box;
+        transition: left 0.5s;
+    }
+
+    .optsBtn_enabledBox::after {
+        font-size: 9.6rem;
+    }
+
+    .optsBtn_wide::after {
+        padding: 5% 30%;
+    }
+
+    .optsBtn_enabledBox.onShowTitle > h1 {
+        left: 0%;
+    }
+
+    .optsBtn_enabledBox.onShowTitle::after {
+        left: -100%;
+    }
+
+    #optsBtn_squareMenu {
+        font-size: 8rem;
+        transition: font-size 0.5s, background 0.4s 0.1s;
+    }
+
+    #optsBtn_squareMenu.onShowTitle {
         background: #8B00FF !important;
-        transition: background 0.3s 0.1s;
+        font-size: 8.5rem;
         overflow: hidden;
+        transition: font-size 0.5s, background 0.3s 0.1s;
     }
 
-    #toolBox_squareMenu.onShowTitle > .ripple {
+    #optsBtn_squareMenu.onShowTitle > .ripple {
         content: "";
         margin: -6rem;
         width: 12rem;
@@ -221,6 +304,7 @@ body {
         border-radius: 100%;
         transform: scale(0);
         animation: ripple 0.6s ease-out;
+        z-index: 321;
     }
 
     @keyframes ripple {
@@ -230,126 +314,716 @@ body {
         }
     }
 
-    body.onMobile #toolBox_squareMenu::after {
-        background-position: 0 0;
+    body.onMobile #optsBtn_squareMenu::after {
+        content: "\f009";
+        line-height: 10.4rem;
     }
 
-    #toolBox_sourceCode > .toolBox_boxIcon > h1 {
+    #optsBtn_sourceCode > h1 {
         background: rgb(255, 153, 0);
         color: rgb(0, 102, 255);
     }
 
-    #toolBox_sourceCode > .toolBox_boxIcon::after {
-        background-size: 600% 100%;
-        background-position: 40% 0;
+    #optsBtn_sourceCode::after {
+        content: "\f09b";
     }
 
-    #toolBox_read > .toolBox_boxIcon > h1 {
-        background: rgb(244, 0, 161);
-        color: rgb(11, 255, 94);
+    #optsBtn_read > h1 {
+        background: #F400A1;
+        color: #0BFF5E;
     }
 
-    #toolBox_read > .toolBox_boxIcon::after {
-        background-size: 600% 100%;
-        background-position: 60% 0;
+    #optsBtn_read::after {
+        content: "\f1ea";
+        font-size: 8.2rem;
+        line-height: 10.2rem;
     }
 
-    #toolBox_write > .toolBox_boxIcon > h1 {
-        background: rgb(153, 255, 77);
-        color: rgb(102, 0, 178);
+    #optsBtn_write > h1 {
+        background: #99FF4D;
+        color: #6600B2;
     }
 
-    #toolBox_write > .toolBox_boxIcon::after {
-        background-size: 600% 100%;
-        background-position: 80% 0;
+    #optsBtn_write::after {
+        content: "\f044";
+        font-size: 9.2rem;
+        line-height: 10.2rem;
     }
 
-    #toolBox_history > .toolBox_boxIcon > h1 {
-        background: rgb(0, 127, 255);
-        color: rgb(255, 128, 0);
+    #optsBtn_history > h1 {
+        background: #007FFF;
+        color: #FF8000;
     }
 
-    #toolBox_history > .toolBox_boxIcon::after {
-        background-size: 600% 100%;
-        background-position: 100% 0;
+    #optsBtn_history::after {
+        content: "\f1da";
     }
 
-    #toolBox_reportProblem > .toolBox_boxIcon > h1 {
+    #optsBtn_reportProblem > h1 {
         background: rgb(255, 200, 50);
         color: rgb(0, 55, 205);
     }
 
-    #toolBox_reportProblem > .toolBox_boxIcon::after {
-        background-size: 600% 100%;
-        background-position: 20% 0;
+    #optsBtn_reportProblem::after {
+        content: "\f06a";
     }
 
-    @media (min-width: 288px) and (max-height: 520px) {
+/* media */
+
+    @media (min-width: 328px) and (max-height: 352px),
+           (min-width: 287px) and (max-width: 328px) and (max-height: 308px),
+           (min-width: 246px) and (max-width: 287px) and (max-height: 264px),
+           (min-width: 228px) and (max-width: 246px) {
         #main::before {
-            height: 125%;
+            height: 120%;
         }
 
-        body.onPc #toolBox_squareMenu,
-        body.onMobile #toolBox_sourceCode,
-        .toolBox_square.onEmpty,
-        #toolBox_reportProblem {
+        body.onPc #optsBtn_squareMenu,
+        body.onMobile #optsBtn_sourceCode,
+        .optsBtn_square.onEmpty,
+        #optsBtn_reportProblem {
             display: none;
         }
     }
 
 
-    @media (min-width: 288px) and (max-height: 380px) {
-        .toolBox_wide {
-            width: 30.33%;
-        }
+#optsBtn_read,
+#optsBtn_write,
+#optsBtn_history {
+    transition: opacity 0.1s 0.2s;
+}
 
-        .toolBox_enabledBox > .toolBox_boxIcon::after {
-            margin: 10%;
-            width: 80%;
-            left: 0% !important;
-        }
+#management.onOpen_read #optsBtn_read,
+#management.onOpen_write #optsBtn_write,
+#management.onOpen_history #optsBtn_history {
+    box-shadow: initial;
+    opacity: 0 !important;
+    transition: opacity 0.4s linear;
+    z-index: 328;
+}
 
-        .toolBox_boxIcon > h1 {
-            left: 100% !important;
-        }
+#management.onClose_read #optsBtn_read,
+#management.onClose_write #optsBtn_write,
+#management.onClose_history #optsBtn_history {
+    z-index: 329;
+}
 
-        #toolBox_squareMenu,
-        #toolBox_sourceCode {
-            display: none;
+#toolBox {
+    z-index: 333;
+    visibility: hidden;
+}
+
+#management.onOpen_read #toolBox,
+#management.onOpen_write #toolBox,
+#management.onOpen_history #toolBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: visible;
+}
+
+#toolBox_main {
+    padding: 2.5rem;
+    position: absolute;
+    background: rgba(47, 50, 56, 0.7);
+    text-align: left;
+    z-index: 341;
+    visibility: hidden;
+    opacity: 0.3;
+}
+
+    #management.onOpen_read #toolBox_main,
+    #management.onOpen_write #toolBox_main,
+    #management.onOpen_history #toolBox_main {
+        width: 80% !important;
+        height: 70% !important;
+        top: 8em !important;
+        left: 10% !important;
+        overflow: auto;
+        z-index: 345;
+        visibility: visible;
+        opacity: 1;
+        transition: width 0.5s, height 0.5s,
+                    top 0.5s, left 0.5s,
+                    opacity 0.4s;
+    }
+
+    body.onMobile #management.onOpen_read #toolBox_main,
+    body.onMobile #management.onOpen_write #toolBox_main,
+    body.onMobile #management.onOpen_history #toolBox_main {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+
+    #management.onClose_read #toolBox,
+    #management.onClose_write #toolBox,
+    #management.onClose_history #toolBox {
+        animation: screenBaffleStill 0.4s;
+    }
+
+    #management.onClose_read #toolBox_main,
+    #management.onClose_write #toolBox_main,
+    #management.onClose_history #toolBox_main {
+        animation: closeContent_box 0.4s;
+        transition: width 0.4s, height 0.4s,
+                    top 0.4s, left 0.4s;
+        transition-timing-function: linear;
+    }
+
+    @keyframes screenBaffleStill {
+        from {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            visibility: visible;
+        }
+        to {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            visibility: visible;
         }
     }
 
-    @media (min-width: 228px) and (max-width: 288px) and (max-height: 394px) {
-        #main::before {
-            height: 128%;
+    @keyframes closeContent_box {
+        0% {
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                        0 2px 9px 1px rgba(0, 0, 0, 0.12),
+                        0 4px 2px -2px rgba(0, 0, 0, 0.2);
+            z-index: 345;
+            visibility: visible;
+            opacity: 1;
         }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                        0 2px 9px 1px rgba(0, 0, 0, 0.12),
+                        0 4px 2px -2px rgba(0, 0, 0, 0.2);
+            z-index: 345;
+            visibility: visible;
+            opacity: 0;
+        }
+    }
 
-        body.onPc #toolBox_squareMenu,
-        body.onMobile #toolBox_sourceCode,
-        .toolBox_square.onEmpty,
-        #toolBox_reportProblem {
-            display: none;
+    #toolBox_main_close  {
+        width: 5em;
+        height: 5em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 0.25em solid #EEE;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 4.5em;
+        color: #EEE;
+        visibility: hidden;
+    }
+
+    #toolBox_main_close::before  {
+        content: "\f00d";
+        font-family: 'FontAwesome';
+        font-size: 3em;
+    }
+
+    #management.onOpen_read #toolBox_main_close,
+    #management.onOpen_write #toolBox_main_close,
+    #management.onOpen_history #toolBox_main_close {
+        visibility: visible;
+        animation: openContent_mainContent 0.55s;
+    }
+
+    .toolBox_main_content {
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    #management.onOpen_read #toolBox_read,
+    #management.onOpen_write #toolBox_write,
+    #management.onOpen_history #toolBox_history {
+        height: initial;
+        overflow: initial;
+        visibility: visible;
+        animation: openContent_mainContent 0.55s;
+    }
+
+    @keyframes openContent_mainContent {
+        0% {
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        90.89% {
+            height: 0;
+            overflow: hidden;
+        }
+        90.9% {
+            height: initial;
+            overflow: initial;
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 
-    @media (min-width: 228px) and (max-width: 288px) and (max-height: 254px) {
-        .toolBox_wide {
-            width: 30.33%;
-        }
+/* media */
 
-        .toolBox_enabledBox > .toolBox_boxIcon::after {
-            margin: 10%;
-            width: 80%;
-            left: 0% !important;
-        }
-
-        .toolBox_boxIcon > h1 {
-            left: 100% !important;
-        }
-
-        #toolBox_squareMenu,
-        #toolBox_sourceCode {
-            display: none;
+    @media (max-width: 960px), (max-height: 662px) {
+        #management.onOpen_read #toolBox_main,
+        #management.onOpen_write #toolBox_main,
+        #management.onOpen_history #toolBox_main {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
         }
     }
+
+
+#management.onOpen_read #toolBox_read {
+    width: 100%;
+    height: 50rem;
+    font-size: 0.75rem;
+    font-size: 0.5rem;
+    font-size: 1rem;
+    color: #EEE;
+}
+
+    #toolBox_read > h2 {
+        margin-top: 0.8em;
+        padding-bottom: 0.8em;
+        border-bottom: 0.1em solid #EEE;
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .toolBox_read_formInput {
+        margin: 7em 4% 2em 4%;
+        width: 92%;
+        height: 6em;
+        position: relative;
+    }
+
+    .toolBox_read_formInput::before,
+    .toolBox_read_formInput::after {
+        content: "";
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        top: -0.5em;
+        border: 0.5em solid #747981;
+        transition: transform 0.3s;
+    }
+
+    .toolBox_read_formInput::before {
+        left: 0;
+        border-right: none;
+        border-radius: 0.5em 0 0 0.5em;
+    }
+
+    .toolBox_read_formInput::after {
+        right: 0;
+        border-left: none;
+        border-radius: 0 0.5em 0.5em 0;
+    }
+
+    .toolBox_read_formInput.onFocus::before {
+        transform: translate3d(-1em, 0, 0);
+    }
+
+    .toolBox_read_formInput.onFocus::after {
+        transform: translate3d(1em, 0, 0);
+    }
+
+    .toolBox_read_formInput > label {
+        width: 100%;
+        height: 6em;
+        position: absolute;
+        text-align: center;
+        font-weight: 900;
+        line-height: 5.5em;
+        color: #df6589;
+    }
+
+    .toolBox_read_formInput > label > span {
+        font-size: 2.5em;
+        line-height: 2.2em;
+    }
+
+    .toolBox_read_formInput.onFocus > label {
+        animation: inputKuro 0.3s forwards;
+    }
+
+    @keyframes inputKuro {
+        0% {
+            text-align: center;
+        }
+        50% {
+            opacity: 0;
+            text-align: center;
+            transform: scale3d(0.3, 0.3, 1);
+        }
+        51% {
+            opacity: 0;
+            text-align: left;
+            transform: translate3d(0, -3.5em, 0) scale3d(0.3, 0.3, 1);
+        }
+        100% {
+            opacity: 1;
+            text-align: left;
+            transform: translate3d(0, -6em, 0);
+        }
+    }
+
+    #toolBox_read_inputCiphertextText,
+    #toolBox_read_inputKeyText {
+        width: 100%;
+        height: 100%;
+        padding: 0 1em;
+        position: relative;
+        background: transparent;
+        border: none;
+        text-align: center;
+        font-size: 2.5em;
+        color: #9196A1;
+        z-index: 543;
+    }
+
+    #toolBox_read_inputCiphertextText:focus,
+    #toolBox_read_inputKeyText:focus {
+        outline: none;
+    }
+
+    #toolBox_read_noteGetFromUrl {
+        height: 100%;
+        padding: 0 1em;
+        position: absolute;
+        top: 0;
+        right: -0.5em;
+        background: #df6589;
+        border: 0.1em solid #CCC;
+        box-sizing: border-box;
+        line-height: 5.2em;
+        color: #D8D8D8;
+        z-index: 544;
+        visibility: hidden;
+        transform: translate3d(-0.33em, 0, 0);
+        transition: transform 0.3s;
+    }
+
+    #toolBox_read_noteGetFromUrl > span {
+        font-size: 2.5em;
+    }
+
+    .toolBox_read_formInput.onCatchScrapbook #toolBox_read_inputCiphertextText {
+        padding-right: 6em;
+    }
+
+    .toolBox_read_formInput.onCatchScrapbook #toolBox_read_noteGetFromUrl {
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+    }
+
+    #toolBox_read_form_submit {
+        margin: 0 2%;
+        margin-top: 6em;
+        width: 96%;
+        height: 6em;
+        display: block;
+        background: #2196F3;
+        border-bottom: 0.9em solid rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.25em 0.25em;
+        text-align: center;
+        line-height: 5.1em;
+    }
+
+    #toolBox_read_form_submit > span {
+        font-size: 2.5em;
+    }
+
+
+#management.onOpen_write #toolBox_write {
+    width: 100%;
+    height: 50rem;
+    font-size: 0.75rem;
+    font-size: 0.5rem;
+    font-size: 1rem;
+    color: #EEE;
+}
+
+    #toolBox_write > h2 {
+        margin-top: 0.8em;
+        padding-bottom: 0.8em;
+        border-bottom: 0.1em solid #EEE;
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+
+#cryptoInfo {
+    position: absolute;
+    z-index: 351;
+    visibility: hidden;
+    perspective: 500px;
+}
+
+#cryptoInfo_main {
+    margin: 1.5rem auto;
+    width: 33rem;
+    height: 37.5rem;
+    padding: 2rem 1.5rem;
+    position: relative;
+    background: #EEE;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                0 2px 9px 1px rgba(0, 0, 0, 0.12),
+                0 4px 2px -2px rgba(0, 0, 0, 0.2);
+    font-size: 2rem;
+    line-height: 3rem;
+    overflow: hidden;
+    transform: translate3D(0, -20rem, 53px) rotateX(35deg) scale(0.3);
+    transition: transform 0.6s;
+}
+
+    #cryptoInfo.onOpen {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        visibility: visible;
+    }
+
+    #cryptoInfo.onClose {
+        animation: screenBaffleStill 0.6s;
+    }
+
+    #cryptoInfo.onOpen #cryptoInfo_main {
+        transform: initial;
+    }
+
+    #cryptoInfo_main > h3 {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.4em;
+        border-bottom: 0.1em solid #000;
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    #cryptoInfo_stap {
+        display: flex;
+        justify-content: flex-start;
+        align-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    #cryptoInfo_stap > div {
+        padding: 0 1rem;
+        flex: 0 0 30rem;
+    }
+
+    #cryptoInfo_stap_text {}
+    #cryptoInfo_stap_key {}
+    #cryptoInfo_stap_encryptA {}
+    #cryptoInfo_stap_encryptB {}
+    #cryptoInfo_stap_substitute {}
+    #cryptoInfo_stap_voteCompression {}
+
+    .onEncrypting {
+        background: #727272;
+        color: #FFF;
+        font-weight: 700;
+    }
+
+    .onEncrypting::after {
+        content: "";
+        width: 3rem;
+        height: 3rem;
+        display: inline-block;
+        background-image: url("./loading.gif");
+        background-size: 100% 100%;
+        vertical-align: middle;
+        user-select: none;
+    }
+
+    .onEncrypting~div {
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+#cryptoInfo_noKey {
+    display: none;
+    position: relative;
+    top: -1.5rem;
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+    #cryptoInfo.onNoKey #cryptoInfo_noKey {
+        display: block;
+    }
+
+    #cryptoInfo.onNoKey #cryptoInfo_stap_key,
+    #cryptoInfo.onNoKey #cryptoInfo_stap_encryptA,
+    #cryptoInfo.onNoKey #cryptoInfo_stap_encryptB,
+    #cryptoInfo.onNoKey #cryptoInfo_stap_substitute,
+    #cryptoInfo.onNoKey #cryptoInfo_stap_voteCompression {
+        display: none;
+    }
+
+/* onNoCompression */
+
+    #cryptoInfo.onNoCompression #cryptoInfo_stap_voteCompression {
+        display: none;
+    }
+
+/* onEecrypt */
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_text {
+        order: 1;
+    }
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_key {
+        order: 2;
+    }
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_encryptA {
+        order: 6;
+    }
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_encryptB {
+        order: 5;
+    }
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_substitute {
+        order: 4;
+    }
+
+    #cryptoInfo.onEncrypt #cryptoInfo_stap_voteCompression {
+        order: 3;
+    }
+
+#cryptoInfo_wrong {
+    display: none;
+    margin: -9.5rem -7.5rem;
+    width: 15rem;
+    height: 15rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.5rem solid #FD7171;
+    border-radius: 50%;
+    box-shadow: 0 2rem 0 23rem rgba(0, 0, 0, 0.4);
+    font-size: 2.5rem;
+    color: #FF5959;
+    animation: cryptoInfoWrongWarn 1.5s infinite;
+}
+
+    #cryptoInfo.onWrong {
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    #cryptoInfo.onWrong .onEncrypting::before {
+        content: "(x)";
+        padding-right: 1rem;
+    }
+
+    #cryptoInfo.onWrong .onEncrypting::after {
+        content: initial;
+    }
+
+    #cryptoInfo.onWrong #cryptoInfo_wrong {
+        display: block;
+    }
+
+    @keyframes cryptoInfoWrongWarn {
+        80% {
+            font-weight: 600;
+            text-shadow: 0.5px 0.5px 2px #A95959;
+        }
+    }
+
+    #cryptoInfo_wrong::before,
+    #cryptoInfo_wrong::after {
+        content: "";
+        width: 24rem;
+        height: 0.5rem;
+        display: block;
+        position: absolute;
+        top: 6.75rem;
+        left: -5rem;
+        vertical-align: middle;
+        background: #FD7171;
+    }
+
+    #cryptoInfo_wrong::before {
+        transform: rotate(45deg);
+    }
+
+    #cryptoInfo_wrong::after {
+        transform: rotate(-45deg);
+    }
+
+    #cryptoInfo_wrong > span {
+        position: absolute;
+        top: 120%;
+        width: 30rem;
+        left: -8rem;
+        text-align: center;
+    }
+
+
+body.onPass {
+    overflow: auto !important;
+}
+
+body.onPass::after {
+    content: "";
+    height: 30%;
+    display: block;
+    background: #000;
+}
+
+body.onPass > #management {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    perspective: 1500px;
+    pointer-events: none;
+}
+
+    body.onPass #managementWrap {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        outline: 12rem solid #FFF;
+        cursor: pointer;
+        overflow: hidden;
+        transform: translateZ(-1500px) rotateX(80deg);
+        transform-origin: 50% 150%;
+    }
+
+body.onPass > #letter {
+    width: 100%;
+    padding: 5% 15% 0 15%;
+    display: block;
+    background: #000;
+    color: #FE6E6F;
+    font-size: 2.5rem;
+    line-height: 4rem;
+}
 

@@ -19,50 +19,113 @@
 
 <body>
 
-    <h1 class="topLayer">1060712 號公告</h1>
+    <div id="letter"></div>
 
-    <main id="main">
-        <div class="toolBox">
-            <div id="toolBox_sourceCode" class="toolBox_square toolBox_enabledBox">
-                <div class="toolBox_boxIcon">
-                    <h1>原始碼</h1>
+    <div id="management">
+        <div id="managementWrap">
+            <h1 class="mainSign">1060712 號公告</h1>
+
+            <main id="main">
+                <div class="optsBtn">
+                    <div id="optsBtn_sourceCode" class="optsBtn_square optsBtn_enabledBox">
+                        <h1>原始碼</h1>
+                    </div>
+
+                    <span class="optsBtn_square onEmpty"></span>
+                    <span class="optsBtn_square onEmpty"></span>
+
+                    <div id="optsBtn_squareMenu" class="optsBtn_square">
+                        <span class="ripple"></span>
+                    </div>
+
+                    <div id="optsBtn_read" class="optsBtn_wide optsBtn_enabledBox">
+                        <h1>讀取代碼</h1>
+                    </div>
+
+                    <div id="optsBtn_write" class="optsBtn_wide optsBtn_enabledBox">
+                        <h1>製作代碼</h1>
+                    </div>
+
+                    <div id="optsBtn_history" class="optsBtn_square optsBtn_enabledBox">
+                        <h1>查紀錄</h1>
+                    </div>
+
+                    <span class="optsBtn_square onEmpty"></span>
+                    <span class="optsBtn_square onEmpty"></span>
+
+                    <div id="optsBtn_reportProblem" class="optsBtn_square optsBtn_enabledBox">
+                        <h1>給建議</h1>
+                    </div>
+                </div>
+            </main>
+
+            <div id="toolBox">
+                <div id="toolBox_main">
+                    <span id="toolBox_main_close"></span>
+
+                    <div id="toolBox_read" class="toolBox_main_content">
+                        <h2>讀取代碼</h2>
+
+                        <div class="toolBox_read_formInput">
+                            <label for="toolBox_read_inputCiphertextText">
+                                <span>輸入密文</span>
+                            </label>
+                            <input tpye="text" id="toolBox_read_inputCiphertextText" />
+                            <span id="toolBox_read_noteGetFromUrl">
+                                <span>由網址攜帶</span>
+                            </span>
+                        </div>
+
+                        <div class="toolBox_read_formInput">
+                            <label for="toolBox_read_inputKeyText">
+                                <span>輸入密鑰</span>
+                            </label>
+                            <input tpye="text" id="toolBox_read_inputKeyText" autocomplete="off" />
+                        </div>
+
+                        <div id="toolBox_read_form_submit">
+                            <span>驗證</span>
+                        </div>
+                    </div>
+
+                    <div id="toolBox_write" class="toolBox_main_content">
+                        <h2>製作代碼</h2>
+
+                        <div class="toolBox_write_inputBox">
+                            <label>輸入明文：</label>
+                            <div id="toolBox_write_inputCiphertextText" contenteditable="true"></div>
+                        </div>
+
+                        <div id="toolBox_write_submit">
+                            <span>生成密文</span>
+                        </div>
+                    </div>
+
+                    <div id="toolBox_history" class="toolBox_main_content">
+                        <h2>查紀錄</h2>
+                    </div>
                 </div>
             </div>
-            <span class="toolBox_square onEmpty"></span>
-            <span class="toolBox_square onEmpty"></span>
-            <div id="toolBox_squareMenu" class="toolBox_square">
-                <span class="ripple"></span>
-            </div>
-            <div id="toolBox_read" class="toolBox_wide toolBox_enabledBox">
-                <div class="toolBox_boxIcon">
-                    <h1>讀取代碼</h1>
-                </div>
-                <div class="toolBox_boxContent">
-                </div>
-            </div>
-            <div id="toolBox_write" class="toolBox_wide toolBox_enabledBox">
-                <div class="toolBox_boxIcon">
-                    <h1>製作代碼</h1>
-                </div>
-                <div class="toolBox_boxContent">
-                </div>
-            </div>
-            <div id="toolBox_history" class="toolBox_square toolBox_enabledBox">
-                <div class="toolBox_boxIcon">
-                    <h1>查紀錄</h1>
-                </div>
-                <div class="toolBox_boxContent">
-                </div>
-            </div>
-            <span class="toolBox_square onEmpty"></span>
-            <span class="toolBox_square onEmpty"></span>
-            <div id="toolBox_reportProblem" class="toolBox_square toolBox_enabledBox">
-                <div class="toolBox_boxIcon">
-                    <h1>給建議</h1>
+
+            <div id="cryptoInfo">
+                <div id="cryptoInfo_main">
+                    <h3>編碼進度清單</h3>
+                    <div id="cryptoInfo_noKey">（無密鑰，統一碼編碼）</div>
+                    <div id="cryptoInfo_stap">
+                        <div id="cryptoInfo_stap_text">明文編碼</div>
+                        <div id="cryptoInfo_stap_key">密鑰編碼</div>
+                        <div id="cryptoInfo_stap_encryptA">第一階段編碼</div>
+                        <div id="cryptoInfo_stap_encryptB">第二階段編碼</div>
+                        <div id="cryptoInfo_stap_substitute">密文替身編碼</div>
+                        <div id="cryptoInfo_stap_voteCompression">投票壓縮編碼</div>
+                    </div>
+                    <div id="cryptoInfo_wrong">
+                        <span>( 點擊返回 )</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="./c1060712Bulletin.js" async></script>
 
