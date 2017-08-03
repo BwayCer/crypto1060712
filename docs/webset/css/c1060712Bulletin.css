@@ -761,16 +761,37 @@ html, body {
         margin-top: 6em;
         width: 96%;
         height: 6em;
+        position: relative;
         display: block;
         background: #2196F3;
         border-bottom: 0.9em solid rgba(0, 0, 0, 0.1);
         border-radius: 0 0 0.25em 0.25em;
         text-align: center;
         line-height: 5.1em;
+        overflow: hidden;
     }
 
     #toolBox_read_form_submit > span {
         font-size: 2.5em;
+    }
+
+    #toolBox_read_form_submit.onRipple > .ripple {
+        content: "";
+        margin: -25%;
+        padding: 25%;
+        position: absolute;
+        background: #1085E2;
+        border-radius: 100%;
+        transform: scale(0);
+        animation: ripple 1s ease-out;
+        z-index: 321;
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
     }
 
 

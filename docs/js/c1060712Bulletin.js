@@ -165,6 +165,25 @@
             };
     } );
 
+    var timeId_delayFocus = null;
+
+    function onFocusOfMobile() {
+        if ( timeId_delayFocus ) clearTimeout( timeId_delayFocus );
+        else {
+            var helBody = document.body;
+
+            helBody.classList.add( 'onFocus' );
+            helBody.style.height = helBody.scrollHeight + 'px';
+        }
+    }
+
+    function onBlurOfMobile() {
+        timeId_delayFocus = setTimeout(
+            'var helBody = document.body;'
+            + 'helBody.style.height = null;'
+            + "helBody.classList.remove( 'onFocus' );"
+            , 32 );
+    }
 
     scopeScript( function () {
         var helBoxRead = document.getElementById( 'toolBox_read' );
@@ -185,7 +204,18 @@
             } );
 
         document.getElementById( 'toolBox_read_form_submit' )
-            .addEventListener( 'click', function () {
+            .addEventListener( 'click', function ( evt ) {
+                var helRipple = this.querySelector( '.ripple' );
+
+                this.classList.remove( 'onRipple' );
+
+                requestAnimationFrame( () => {
+                    this.classList.add( 'onRipple' );
+
+                    helRipple.style.top = evt.offsetY + 'px';
+                    helRipple.style.left = evt.offsetX + 'px';
+                } );
+
                 var helCiphertextInput
                     = document.getElementById( 'toolBox_read_inputCiphertextText' );
                 var helKeyInput = document.getElementById( 'toolBox_read_inputKeyText' );
