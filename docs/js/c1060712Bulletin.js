@@ -158,7 +158,6 @@
         helCiphertextInput.onchange
             = helCiphertextInput.onkeyup
             = function () {
-                console.log(this.value, arguments);
                 if ( this.value !== urlCarryCiphertext ) {
                     urlCarryCiphertext = this.onchange = this.onkeyup = null;
                     this.parentNode.classList.remove( 'onCatchScrapbook' );
@@ -173,7 +172,6 @@
         helBoxRead
             .querySelectorAll( '#toolBox_read_inputCiphertextText, #toolBox_read_inputKeyText' )
             .forEach( function ( helItem ) {
-                console.log( helItem );
                 helItem.addEventListener( 'focus', function () {
                     onFocusOfMobile();
                     this.parentNode.classList.add( 'onFocus' );

@@ -59,7 +59,7 @@ html, body {
     #managementWrap {
         height: 100%;
         position: relative;
-        background-image: url("./night_lights.jpg");
+        background-image: url("../icon/night_lights.jpg");
         background-position: 50% 10%;
         background-size: auto 130%;
         background-repeat: no-repeat;
@@ -515,7 +515,7 @@ html, body {
         }
     }
 
-    #toolBox_main_close  {
+    #toolBox_main_close {
         width: 5em;
         height: 5em;
         position: absolute;
@@ -852,7 +852,7 @@ html, body {
         width: 3rem;
         height: 3rem;
         display: inline-block;
-        background-image: url("./loading.gif");
+        background-image: url("../icon/loading_dot.gif");
         background-size: 100% 100%;
         vertical-align: middle;
         user-select: none;
