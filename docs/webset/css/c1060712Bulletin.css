@@ -125,31 +125,31 @@ html, body {
      *  1:8 => w: 328px, h: 528px
      */
 
-    @media (min-width: 328px) and (min-height: 228px) and (max-height: 528px) {
+    @media (min-width: 328px) and (max-height: 528px) {
         html, body {
             height: 528px;
         }
     }
 
-    @media (min-width: 287px) and (max-width: 328px) and (min-height: 228px) and (max-height: 462px) {
+    @media (min-width: 287px) and (max-width: 328px) and (max-height: 462px) {
         html, body {
             height: 462px;
         }
     }
 
-    @media (min-width: 246px) and (max-width: 287px) and (min-height: 228px) and (max-height: 396px) {
+    @media (min-width: 246px) and (max-width: 287px) and (max-height: 396px) {
         html, body {
             height: 396px;
         }
     }
 
-    @media (min-width: 228px) and (max-width: 246px) and (min-height: 228px) and (max-height: 330px) {
+    @media (min-width: 228px) and (max-width: 246px) and (max-height: 330px) {
         html, body {
             height: 330px;
         }
     }
 
-    @media (max-width: 228px), (max-height: 228px) {
+    @media (max-width: 228px) {
         .mainSign {
             top: -8rem;
         }
@@ -160,56 +160,11 @@ html, body {
         }
     }
 
-    @media (min-width: 328px) and (max-height: 228px) {
-        body.onMobile.onFocus html,
-        body.onMobile.onFocus body {
-            height: 528px;
-        }
-    }
-
-    @media (min-width: 287px) and (max-width: 328px) and (max-height: 228px) {
-        body.onMobile.onFocus html,
-        body.onMobile.onFocus body {
-            height: 462px;
-        }
-    }
-
-    @media (min-width: 246px) and (max-width: 287px) and (max-height: 228px) {
-        body.onMobile.onFocus html,
-        body.onMobile.onFocus body {
-            height: 396px;
-        }
-    }
-
-    @media (min-width: 228px) and (max-width: 246px) and (max-height: 228px) {
-        body.onMobile.onFocus html,
-        body.onMobile.onFocus body {
-            height: 330px;
-        }
-    }
-
-    @media (max-height: 228px) {
-        body.onMobile.onFocus .mainSign {
-            top: 0;
-        }
-
-        body.onMobile.onFocus #main,
-        body.onMobile.onFocus #toolBox {
-            display: initial;
-        }
-    }
-
 /* media */
 
     @media (min-aspect-ratio: 11/5) {
         #managementWrap {
             background-size: 100% 130%;
-        }
-    }
-
-    @media (max-height: 228px) {
-        #managementWrap {
-            background-position: 50% 60%;
         }
     }
 

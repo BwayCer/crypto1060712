@@ -127,22 +127,9 @@
             .addEventListener( 'click', function ( evt ) {
                 evt.stopPropagation();
             } );
+
     } );
 
-
-    function onFocusOfMobile() {
-        var helBody = document.body;
-
-        helBody.classList.add( 'onFocus' );
-        helBody.style.height = helBody.scrollHeight + 'px';
-    }
-
-    function onBlurOfMobile() {
-        var helBody = document.body;
-
-        helBody.style.height = null;
-        helBody.classList.remove( 'onFocus' );
-    }
 
     scopeScript( function () {
         var urlCarryCiphertext = location.search.match( /[?&]code=([0-9a-f]+)/ );
@@ -165,25 +152,8 @@
             };
     } );
 
-    var timeId_delayFocus = null;
 
-    function onFocusOfMobile() {
-        if ( timeId_delayFocus ) clearTimeout( timeId_delayFocus );
-        else {
-            var helBody = document.body;
 
-            helBody.classList.add( 'onFocus' );
-            helBody.style.height = helBody.scrollHeight + 'px';
-        }
-    }
-
-    function onBlurOfMobile() {
-        timeId_delayFocus = setTimeout(
-            'var helBody = document.body;'
-            + 'helBody.style.height = null;'
-            + "helBody.classList.remove( 'onFocus' );"
-            , 32 );
-    }
 
     scopeScript( function () {
         var helBoxRead = document.getElementById( 'toolBox_read' );
@@ -192,13 +162,10 @@
             .querySelectorAll( '#toolBox_read_inputCiphertextText, #toolBox_read_inputKeyText' )
             .forEach( function ( helItem ) {
                 helItem.addEventListener( 'focus', function () {
-                    onFocusOfMobile();
                     this.parentNode.classList.add( 'onFocus' );
                 } );
 
                 helItem.addEventListener( 'blur', function () {
-                    onBlurOfMobile();
-
                     if ( !this.value ) this.parentNode.classList.remove( 'onFocus' );
                 } );
             } );
